@@ -83,8 +83,18 @@ public class IntQueueTest {
     }
 
     @Test
+    public void testClear() {
+        // This is an example unit test
+        mQueue.enqueue(5);
+        assertFalse(mQueue.isEmpty());
+        mQueue.clear();
+        assertTrue(mQueue.isEmpty());
+    }
+
+    @Test
     public void testDequeue() {
         // TODO: write your own unit test
+        assertEquals(null, mQueue.dequeue()); // dequeue on empty queue
         mQueue.enqueue(1);
         mQueue.enqueue(2);
         mQueue.enqueue(3);
@@ -114,5 +124,23 @@ public class IntQueueTest {
         }
     }
 
+    @Test
+    public void testEnsureCapacity() throws IOException {
+        // This is an example unit test
+        for (int i = 1; i <= 9; i++) {
+            mQueue.enqueue(i);
+        }
+
+        mQueue.dequeue();
+        for (int i = 10; i <= 20; i++) {
+            mQueue.enqueue(i);
+        }
+        assertEquals(19, mQueue.size());
+        for (int i = 2; i <= 20; i++) {
+            assertEquals((Integer)i, mQueue.dequeue());
+        }
+
+        assertEquals(0, mQueue.size());
+    }
 
 }
